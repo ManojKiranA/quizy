@@ -17,4 +17,9 @@ class Quiz extends Model
     {
         return $this->hasMany('\App\Question');
     }
+
+    public function participants()
+    {
+        return $this->hasMany('\App\Participant');
+    }
 }
