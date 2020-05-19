@@ -10,6 +10,7 @@
       </button>
     </div>
     <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+      @auth
       <a class="px-4 py-2 mt-2 text-sm font-semibold @if(request()->routeIs('quiz.*')) text-gray-900 bg-gray-200 @endif rounded md:mt-0 hover:text-gray-900 focus:outline-none" href="/quiz">Quiz</a>
       <div @click.away="open = false" class="relative" x-data="{ open: false }">
         <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 border text-sm font-semibold text-left bg-transparent rounded md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 hover:bg-gray-200 focus:outline-none">
@@ -31,40 +32,6 @@
               </div>
             </div>
             <div class="border-b">
-              {{-- <a href="#" class="px-4 py-2 hover:bg-gray-100 flex">
-                <div class="text-gray-800">
-                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" viewBox="0 0 24 24" class="w-5 h-5">
-                    <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <div class="pl-3">
-                  <p class="text-sm font-medium text-gray-800 leading-none">Add members</p>
-                  <p class="text-xs text-gray-500">Add/manage users &amp; teams</p>
-                </div>
-              </a>
-              <a href="#" class="px-4 py-2 hover:bg-gray-100 flex">
-                <div class="text-gray-800">
-                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" viewBox="0 0 24 24" class="w-5 h-5">
-                    <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <div class="pl-3">
-                  <p class="text-sm font-medium text-gray-800 leading-none">Account settings</p>
-                  <p class="text-xs text-gray-500">Usage, billing, branding, teams</p>
-                </div>
-              </a>
-              <a href="#" class="px-4 py-2 hover:bg-gray-100 flex">
-                <div class="text-gray-800">
-                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" viewBox="0 0 24 24" class="w-5 h-5">
-                    <path d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div class="pl-3">
-                  <p class="text-sm font-medium text-gray-800 leading-none">Personal settings</p>
-                  <p class="text-xs text-gray-500">Email, profile, notifications</p>
-                </div>
-              </a> --}}
               <a href="#" class="px-4 py-2 hover:bg-gray-100 flex">
                 <div class="text-green-600">
                   <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" viewBox="0 0 24 24" class="w-5 h-5">
@@ -91,6 +58,11 @@
           </div>
         </div>
       </div>
+      @endauth
+      @guest
+      <a class="px-4 py-2 mt-2 text-sm font-semibold @if(request()->routeIs('login')) text-gray-900 bg-gray-200 @endif rounded md:mt-0 hover:text-gray-900 focus:outline-none" href="/login">Login</a>
+      <a class="px-4 py-2 mt-2 text-sm font-semibold @if(request()->routeIs('register')) text-gray-900 bg-gray-200 @endif rounded md:mt-0 hover:text-gray-900 focus:outline-none" href="/register">Register</a>
+      @endguest
     </nav>
   </div>
 </div>
