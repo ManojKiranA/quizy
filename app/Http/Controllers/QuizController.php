@@ -88,4 +88,12 @@ class QuizController extends Controller
 
         return back()->with('success', 'Quiz deleted!');
     }
+
+    public function host(Quiz $quiz)
+    {
+        $quiz->pin = sprintf("%06d", mt_rand(1, 999999));
+        $quiz->save();
+
+        return redirect()->route('host.dashboard', $quiz);
+    }
 }

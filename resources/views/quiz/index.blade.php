@@ -37,7 +37,7 @@
         <span class="px-2 py-1 border rounded text-blue-500 font-semibold">{{ count($quiz->questions) }} questions</span>
         <div class="mt-3 flex justify-between items-center text-sm">
           <p class="text-gray-700">{{ $quiz->created_at->diffForHumans() }}</p>
-          <a href="#" class="z-0 ml-auto mr-3 px-3 py-1 rounded border text-blue-500 font-semibold transition duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg focus:outline-none">Host</a>
+          <a href="{{ route('quiz.host', $quiz) }}" class="z-0 ml-auto mr-3 px-3 py-1 rounded border text-blue-500 font-semibold transition duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg focus:outline-none">Host</a>
           <a href="{{ route('quiz.show', $quiz) }}" class="z-0 px-3 py-1 rounded border bg-blue-500 text-white font-semibold transition duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg focus:outline-none">View</a>
         </div>
       </div>

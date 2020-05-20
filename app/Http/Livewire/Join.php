@@ -2,7 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Quiz;
+use App\Participant;
 use Livewire\Component;
+use App\Events\QuizEvent;
 
 class Join extends Component
 {
@@ -23,6 +26,19 @@ class Join extends Component
             'username' => 'required',
             'pin' => 'required',
         ]);
+
+        if($quiz = Quiz::where('pin', $this->pin)->first())
+        {
+            $participant = $quiz->participants()->create([
+                'username' => $this->username
+            ]);
+
+            event(new QuizEvent());
+
+            return redirect()->route('participant.game', $participant);
+        }
+
+        session()->flash('message', 'Invalid pin!');
     }
 
     public function render()
